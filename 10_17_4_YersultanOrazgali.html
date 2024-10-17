@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinate System - lin(V1; Z)</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="200" height="160"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas dimensions
+        const width = 200;
+        const height = 160;
+
+        // Midpoint of the canvas
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        // Scale factor for the coordinates (5 pixels per unit on x-axis, 4 pixels per unit on y-axis)
+        const scaleX = 5;
+        const scaleY = 4;
+
+        // Define vector V1
+        const V1X = 3; // x-component of V1
+        const V1Y = 2; // y-component of V1
+
+        // Draw x-axis
+        ctx.beginPath();
+        ctx.moveTo(0, centerY);
+        ctx.lineTo(width, centerY);
+        ctx.stroke();
+
+        // Draw y-axis
+        ctx.beginPath();
+        ctx.moveTo(centerX, 0);
+        ctx.lineTo(centerX, height);
+        ctx.stroke();
+
+        // Mark points on x-axis
+        ctx.fillText("-20", centerX - 100, centerY + 15);
+        ctx.fillText("20", centerX + 80, centerY + 15);
+
+        // Mark points on y-axis
+        ctx.fillText("20", centerX + 5, centerY - 70);
+        ctx.fillText("-20", centerX + 5, centerY + 75);
+
+        // Function to draw a dot at the endpoint of a vector
+        function drawDot(x, y, label, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, 2 * Math.PI); // Radius of 3px for the dot
+            ctx.fill();
+            ctx.fillStyle = color;
+            ctx.font = '8px Arial';
+            ctx.fillText(label, x - 7, y - 4); // Label with slight offset
+        }
+
+        // Manually draw the dots for lin(V1; Z)
+
+        // Draw dot for -5*V1
+        drawDot(centerX + (-5 * V1X * scaleX), centerY - (-5 * V1Y * scaleY), '-5*V1', 'red');
+
+        // Draw dot for -4*V1
+        drawDot(centerX + (-4 * V1X * scaleX), centerY - (-4 * V1Y * scaleY), '-4*V1', 'red');
+
+        // Draw dot for -3*V1
+        drawDot(centerX + (-3 * V1X * scaleX), centerY - (-3 * V1Y * scaleY), '-3*V1', 'red');
+
+        // Draw dot for -2*V1
+        drawDot(centerX + (-2 * V1X * scaleX), centerY - (-2 * V1Y * scaleY), '-2*V1', 'red');
+
+        // Draw dot for -1*V1
+        drawDot(centerX + (-1 * V1X * scaleX), centerY - (-1 * V1Y * scaleY), '-1*V1', 'red');
+
+        // Draw dot for 0*V1 (origin)
+        drawDot(centerX, centerY, '0*V1', 'black');
+
+        // Draw dot for 1*V1
+        drawDot(centerX + (1 * V1X * scaleX), centerY - (1 * V1Y * scaleY), '1*V1', 'green');
+
+        // Draw dot for 2*V1
+        drawDot(centerX + (2 * V1X * scaleX), centerY - (2 * V1Y * scaleY), '2*V1', 'green');
+
+        // Draw dot for 3*V1
+        drawDot(centerX + (3 * V1X * scaleX), centerY - (3 * V1Y * scaleY), '3*V1', 'green');
+
+        // Draw dot for 4*V1
+        drawDot(centerX + (4 * V1X * scaleX), centerY - (4 * V1Y * scaleY), '4*V1', 'green');
+
+        // Draw dot for 5*V1
+        drawDot(centerX + (5 * V1X * scaleX), centerY - (5 * V1Y * scaleY), '5*V1', 'green');
+        
+    </script>
+</body>
+</html>
+

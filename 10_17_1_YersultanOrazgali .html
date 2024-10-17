@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinate System</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="200" height="160"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas dimensions
+        const width = 200;
+        const height = 160;
+
+        // Midpoint of the canvas
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        // Scale factor for the coordinates (5 pixels per unit on x-axis, 4 pixels per unit on y-axis)
+        const scaleX = 5;
+        const scaleY = 4;
+
+        // Draw x-axis
+        ctx.beginPath();
+        ctx.moveTo(0, centerY);
+        ctx.lineTo(width, centerY);
+        ctx.stroke();
+
+        // Draw y-axis
+        ctx.beginPath();
+        ctx.moveTo(centerX, 0);
+        ctx.lineTo(centerX, height);
+        ctx.stroke();
+
+        // Mark points on x-axis
+        ctx.fillText("-20", centerX - 100, centerY + 15);
+        ctx.fillText("20", centerX + 80, centerY + 15);
+
+        // Mark points on y-axis
+        ctx.fillText("20", centerX + 5, centerY - 70);
+        ctx.fillText("-20", centerX + 5, centerY + 75);
+
+        // Draw vector V1[3,2]
+        const V1X = 3 * scaleX; // 3 units scaled on the x-axis
+        const V1Y = 2 * scaleY; // 2 units scaled on the y-axis
+
+        // Set the color for the vector
+        ctx.strokeStyle = 'red';
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY); // Starting at the origin (0,0)
+        ctx.lineTo(centerX + V1X, centerY - V1Y); // Drawing to (3, 2)
+        ctx.stroke();
+
+        // Add the label "V1" near the endpoint of the vector
+        ctx.fillStyle = 'red';
+        ctx.font = '8px Arial';
+        ctx.fillText("V1", centerX + V1X - 4, centerY - V1Y - 4); // Slight offset for better placement
+    </script>
+</body>
+</html>

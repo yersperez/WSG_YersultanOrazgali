@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinate System</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="200" height="160"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas dimensions
+        const width = 200;
+        const height = 160;
+
+        // Midpoint of the canvas
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        // Scale factor for the coordinates (5 pixels per unit on x-axis, 4 pixels per unit on y-axis)
+        const scaleX = 5;
+        const scaleY = 4;
+
+        // Draw x-axis
+        ctx.beginPath();
+        ctx.moveTo(0, centerY);
+        ctx.lineTo(width, centerY);
+        ctx.stroke();
+
+        // Draw y-axis
+        ctx.beginPath();
+        ctx.moveTo(centerX, 0);
+        ctx.lineTo(centerX, height);
+        ctx.stroke();
+
+        // Mark points on x-axis
+        ctx.fillText("-20", centerX - 100, centerY + 15);
+        ctx.fillText("20", centerX + 80, centerY + 15);
+
+        // Mark points on y-axis
+        ctx.fillText("20", centerX + 5, centerY - 70);
+        ctx.fillText("-20", centerX + 5, centerY + 75);
+
+        // Function to draw a dot at the endpoint of a vector
+        function drawDot(x, y, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, 2 * Math.PI); // Radius of 3px for the dot
+            ctx.fill();
+        }
+
+     
+        // Draw vector 3*V1[9,6]
+        const V2X = 9 * scaleX; // 9 units scaled on the x-axis
+        const V2Y = 6 * scaleY; // 6 units scaled on the y-axis
+        ctx.strokeStyle = 'green';
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY); // Starting at the origin (0,0)
+        ctx.lineTo(centerX + V2X, centerY - V2Y); // Drawing to (9, 6)
+        ctx.stroke();
+        ctx.fillStyle = 'green';
+        ctx.font = '8px Arial';
+        ctx.fillText("3*V1", centerX + V2X - 7, centerY - V2Y - 4); // Slight offset for better placement
+        drawDot(centerX + V2X, centerY - V2Y, 'green'); // Draw dot for 3*V1
+
+        // Draw vector 5*V1[15,10]
+        const V3X = 15 * scaleX; // 15 units scaled on the x-axis
+        const V3Y = 10 * scaleY; // 10 units scaled on the y-axis
+        ctx.strokeStyle = 'blue';
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY); // Starting at the origin (0,0)
+        ctx.lineTo(centerX + V3X, centerY - V3Y); // Drawing to (15, 10)
+        ctx.stroke();
+        ctx.fillStyle = 'blue';
+        ctx.font = '8px Arial';
+        ctx.fillText("5*V1", centerX + V3X - 7, centerY - V3Y - 4); // Slight offset for better placement
+        drawDot(centerX + V3X, centerY - V3Y, 'blue'); // Draw dot for 5*V1
+    </script>
+</body>
+</html>
